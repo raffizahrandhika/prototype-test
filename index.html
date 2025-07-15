@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prototype Tes Matematika</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com ">
+    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css ">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="math-body">
+    <!-- HEADER -->
+    <div class="math-header">
+        <div>
+            <div class="math-header-title">R-QUEST</div>
+            <div class="math-header-subtitle">Raffi's Quizzes, Exercises, and Smart Training</div>
+        </div>
+    </div>
+    <div class="math-timer-box" id="mathTimerBox">
+        <i class="fas fa-clock math-timer-emoji"></i>
+        <span id="mathTimerText">30:00</span>
+    </div>
+
+    <div class="math-container-quiz">
+        <div class="math-test-status" id="mathTestStatus">
+            <span>Status Tes: <span id="mathStatusText">Belum Dimulai</span></span>
+            <span id="mathCompletedTime"></span>
+        </div>
+
+        <header>
+            <h2 class="math-h2">Tes Matematika - Bilangan dan Operasi Dasar</h2>
+
+            <!-- Dropdown Menu -->
+            <div class="math-dropdown-menu">
+                <button class="math-dropdown-toggle" id="mathDropdownToggle">
+                    Level Mudah <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="math-dropdown-content" id="mathDropdownContent">
+                    <div class="math-dropdown-item active" onclick="location.href='bilangan-easy.html'">Level Mudah</div>
+                    <div class="math-dropdown-item" onclick="location.href='bilangan-medium.html'">Level Menengah</div>
+                    <div class="math-dropdown-item" onclick="location.href='bilangan-hard.html'">Level Sulit</div>
+                </div>
+            </div>
+
+            <!-- Start Screen -->
+            <div class="math-start-screen" id="mathStartScreen">
+                <h1 class="math-h1">Petunjuk Pengerjaan</h1>
+                <div class="math-instructions">
+                    <ol>
+                        <li>Tes ini terdiri dari 30 soal dengan waktu pengerjaan 30 menit.</li>
+                        <li>Terdapat 4 jenis soal:
+                            <ul class="math-bullet-points">
+                                <li><span style="color: #0D47A1;">🔹</span> Pilihan Ganda (1 jawaban benar)</li>
+                                <li><span style="color: #1B5E20;">🔹</span> Pilihan Ganda Multi Jawaban</li>
+                                <li><span style="color: #FF6F00;">🔹</span> Uraian Singkat</li>
+                                <li><span style="color: #6A1B9A;">🔹</span> Menjodohkan</li>
+                            </ul>
+                        </li>
+                        <li>Anda dapat menandai soal yang ingin dikerjakan nanti dengan tombol "Ragu-ragu".</li>
+                        <li>Gunakan tombol navigasi di bawah soal untuk berpindah antar soal.</li>
+                        <li>Tombol angka di bagian atas menunjukkan status soal:
+                            <ul class="math-bullet-points">
+                                <li><span style="color: #2196F3;">🟦</span> Biru: Sudah dijawab</li>
+                                <li><span style="color: #FFC107;">🟨</span> Kuning: Ditandai ragu-ragu</li>
+                                <li><span style="color: #4CAF50;">🟩</span> Hijau: Jawaban benar</li>
+                                <li><span style="color: #f44336;">🟥</span> Merah: Jawaban salah</li>
+                            </ul>
+                        </li>
+                        <li>Waktu akan terus berjalan selama tes berlangsung.</li>
+                        <li>Setelah submit, Anda tidak dapat mengubah jawaban.</li>
+                        <li>Pembahasan akan muncul setelah Anda menyelesaikan tes.</li>
+                    </ol>
+                    <p>Selamat mengerjakan!</p>
+                </div>
+                <button class="math-btn-start" id="mathBtnStart">Mulai Tes</button>
+            </div>
+        </header>
+
+        <!-- Quiz Elements (initially hidden) -->
+        <div class="math-quiz-elements" id="mathQuizElements">
+            <div class="math-layout">
+                <!-- Question Navigation Sidebar -->
+                <div class="math-question-nav-sidebar" id="mathQuestionNavSidebar">
+                    <div class="math-question-nav-toggle">
+                        <button class="math-question-nav-btn" id="mathQuestionNavBtn">
+                            <span><i class="fas fa-list"></i> Navigasi Soal</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="math-question-nav-container" id="mathQuestionNavContainer">
+                            <div class="math-question-nav" id="mathQuestionNav">
+                                <!-- Questions will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="math-main-content">
+                    <div class="math-progress" id="mathProgressText">0 dari <span id="mathTotalQuestions">0</span> Soal dikerjakan</div>
+
+                    <div class="math-question-container">
+                        <div class="math-question-header">
+                            <div class="math-question-number" id="mathQuestionNumber">No. 1 <span class="math-question-type" id="mathQuestionType"></span></div>
+                            <button class="math-btn-mark" id="mathBtnMark"><i class="fas fa-flag"></i> Ragu-ragu</button>
+                        </div>
+                        <div class="math-question-text" id="mathQuestionText">
+                            <!-- Question text will be loaded by JavaScript -->
+                        </div>
+                        <div class="math-options" id="mathOptions">
+                            <!-- Options will be loaded by JavaScript -->
+                        </div>
+                        <div class="math-short-answer-container" id="mathShortAnswerContainer" style="display: none;">
+                            <input type="text" class="math-short-answer-input" id="mathShortAnswerInput" placeholder="Tulis jawaban singkat Anda di sini...">
+                        </div>
+                    </div>
+
+                    <div class="math-navigation">
+                        <div class="math-nav-buttons">
+                            <button class="math-btn-prev" id="mathBtnPrev">
+                                <i class="fas fa-chevron-left"></i>
+                                Sebelumnya
+                            </button>
+                            <button class="math-btn-next" id="mathBtnNext">
+                                Selanjutnya
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="math-submit-container">
+                            <button class="math-btn-submit" id="mathBtnSubmit">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Jawaban
+                            </button>
+                            <div class="math-score-display" id="mathScoreDisplay">
+                                <div class="math-score-title">Hasil Tes Anda:</div>
+                                <div class="math-score-percentage" id="mathScorePercentage">0%</div>
+                                <div class="math-score-detail" id="mathScoreDetail">0 benar dari 0 soal</div>
+                                <div class="math-score-message" id="mathScoreMessage"></div>
+                                <button class="math-btn-reset" id="mathBtnReset">
+                                    <i class="fas fa-redo"></i>
+                                    Kerjakan Ulang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="math-submit-confirm" id="mathSubmitConfirm">
+        <div class="math-submit-dialog">
+            <h3 class="math-h3">Konfirmasi Submit Jawaban</h3>
+            <p>Apakah Anda yakin ingin mengirim jawaban? Anda tidak dapat mengubah jawaban setelah submit.</p>
+            <div class="math-dialog-buttons">
+                <button class="math-btn-cancel" id="mathBtnCancel">Batal</button>
+                <button class="math-btn-confirm" id="mathBtnConfirm">Ya, Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="math-footer">
+        © 2025 Muhammad Raffi Zahrandhika
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
