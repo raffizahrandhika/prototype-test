@@ -1044,7 +1044,6 @@
     .math-question-nav-sidebar {
         width: 400px;
         flex-shrink: 0;
-        margin-top: 3opx;
     }
 
     .math-main-content {
@@ -1057,7 +1056,7 @@
     }
 
     .math-question-nav-toggle {
-        margin-bottom: 0;
+        margin-top: 30px;
     }
 
     .math-navigation {
